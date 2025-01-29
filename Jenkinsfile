@@ -18,7 +18,7 @@ pipeline {
                             sourceFiles: "**", 
                             cleanRemote: true, 
                             excludes : '*.log, *.lock, .svn/, .git/', 
-                            remoteDirectory: "shortener",                                                  
+                            remoteDirectory: "/home/gelasimovyi/shortener",                                                  
                             execCommand: "docker-compose -f docker-compose.shortener.yml up -d --build && docker compose -f docker-compose.nginx.yml up -d --build"
                         ), 
                     ], 
