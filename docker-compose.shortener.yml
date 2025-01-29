@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  url-shortener:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: url-shortener
+    networks:
+      - shortener_network
+    ports:
+      - "8080:8080"
+    restart: always
+
+networks:
+  shortener_network:
+    driver: bridge
