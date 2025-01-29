@@ -11,7 +11,7 @@ pipeline {
         stage('Build And Run Shortener Container') {
             steps {
                 script {
-                    sh "docker-compose -f docker-compose.shortener.yml up -d --build"
+                    sh "docker compose -f docker-compose.shortener.yml up -d --build"
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Build And Run Nginx Container') {
             steps {
                 script {
-                    sh "docker-compose -f docker-compose.nginx.yml up -d --build"
+                    sh "docker compose -f docker-compose.nginx.yml up -d --build"
                 }
             }
         }
