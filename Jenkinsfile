@@ -22,7 +22,7 @@ pipeline {
                             execCommand: "sudo docker-compose -f docker-compose.shortener.yml up -d --build && sudo docker-compose -f docker-compose.nginx.yml up -d --build"
                         ), 
                     ], 
-                    verbose: false 
+                    verbose: true
                 ) 
             ]) 
         } 
