@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone project from GitHub') {
             steps {
-                git 'https://github.com/0xdreamerr/CT1520-task.git'
+                git branch: 'main', url: 'https://github.com/0xdreamerr/CT1520-task.git'
             }
         }
 
