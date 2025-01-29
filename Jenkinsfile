@@ -8,22 +8,26 @@ pipeline {
             }
         }
 
-        stage('Build And Run Shortener Container') {
-            steps {
-                script {
-                    sh "docker compose -f docker-compose.shortener.yml up -d --build"
-                }
-            }
-        }
-
-        stage('Build And Run Nginx Container') {
-            steps {
-                script {
-                    sh "docker compose -f docker-compose.nginx.yml up -d --build"
-                }
-            }
-        }
-
+	stage('Build and run'){ 
+    steps{ 
+        script{ 
+            sshPublisher(publishers: [ 
+                sshPublisherDesc(configName: "gelasimov", 
+                    transfers: [ 
+                        sshTransfer( 
+                            sourceFiles: "**", 
+                            cleanRemote: true, 
+                            excludes : '*.log, *.lock, .svn/, .git/', 
+                            remoteDirectory: "shortener",                                                  
+                            execCommand: "docker-compose -f docker-compose.shortener.yml up -d --build && docker compose -f docker-compose.nginx.yml up -d --build"
+                        ), 
+                    ], 
+                    verbose: false 
+                ) 
+            ]) 
+        } 
+    } 
+}
         
     }
     
